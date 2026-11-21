@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#090810" />
+  <title>NEXORA AI — Your intelligent workspace</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand-row">
+        <div class="brand-mark"><span>N</span></div>
+        <div class="brand-name">NEXORA <span>AI</span></div>
+        <button class="icon-btn mobile-close" id="closeSidebar" aria-label="Close sidebar">×</button>
+      </div>
+
+      <button class="new-chat-btn" id="newChatBtn"><span class="plus">＋</span> New chat <kbd>Ctrl K</kbd></button>
+
+      <div class="side-label">WORKSPACE</div>
+      <button class="nav-item active"><span class="nav-icon">◈</span> Assistant <span class="live-dot"></span></button>
+      <button class="nav-item" id="exploreBtn"><span class="nav-icon">✧</span> Explore prompts</button>
+
+      <div class="history-heading">
+        <span class="side-label">RECENT CHATS</span>
+        <button class="tiny-icon" id="clearHistoryBtn" title="Clear all chats">···</button>
+      </div>
+      <div class="history-list" id="historyList"></div>
+
+      <div class="sidebar-bottom">
+        <div class="upgrade-card">
+          <div class="upgrade-icon">✦</div>
+          <div><strong>Make ideas happen</strong><p>Your creative space starts here.</p></div>
+        </div>
+        <button class="profile-row" id="profileBtn">
+          <div class="avatar user-avatar">A</div>
+          <div class="profile-copy"><strong>My Workspace</strong><span>Personal plan</span></div>
+          <span class="more">···</span>
+        </button>
+      </div>
+    </aside>
+
+    <main class="main-panel">
+      <header class="topbar">
+        <div class="top-left">
+          <button class="icon-btn menu-btn" id="openSidebar" aria-label="Open sidebar">☰</button>
+          <div class="breadcrumb">Workspace <span>/</span> <strong>Assistant</strong></div>
+        </div>
+        <div class="top-actions">
+          <div class="mode-pill"><span class="status-dot"></span> <span id="modeLabel">Demo mode</span></div>
+          <button class="icon-btn" id="settingsBtn" title="Settings">⚙</button>
+        </div>
+      </header>
+
+      <section class="chat-area" id="chatArea">
+        <div class="welcome" id="welcome">
+          <div class="orb-wrap"><div class="orb"><span>✦</span></div><div class="orb-ring ring-one"></div><div class="orb-ring ring-two"></div></div>
+          <div class="eyebrow"><span class="eyebrow-line"></span> YOUR INTELLIGENT WORKSPACE <span class="eyebrow-line"></span></div>
+          <h1>Ideas start here.<br><span>Let's make them real.</span></h1>
+          <p class="welcome-copy">A little curiosity can lead somewhere extraordinary.<br>What would you like to create today?</p>
+          <div class="prompt-grid">
+            <button class="prompt-card" data-prompt="Give me 5 creative business ideas I can start with a small budget."><span class="prompt-icon violet">✧</span><span><strong>Explore ideas</strong><small>Find a fresh direction</small></span><b>↗</b></button>
+            <button class="prompt-card" data-prompt="Help me build a professional website using HTML, CSS and JavaScript."><span class="prompt-icon blue">⌘</span><span><strong>Build something</strong><small>Turn a plan into a project</small></span><b>↗</b></button>
+            <button class="prompt-card" data-prompt="Explain artificial intelligence in simple words with examples."><span class="prompt-icon pink">✦</span><span><strong>Learn something</strong><small>Understand a new topic</small></span><b>↗</b></button>
+            <button class="prompt-card" data-prompt="Write a professional social media caption for a new clothing brand."><span class="prompt-icon gold">✎</span><span><strong>Create content</strong><small>Make words work for you</small></span><b>↗</b></button>
+          </div>
+        </div>
+        <div class="messages" id="messages" aria-live="polite"></div>
+      </section>
+
+      <footer class="composer-wrap">
+        <div class="composer" id="composer">
+          <textarea id="messageInput" rows="1" placeholder="Message NEXORA..." aria-label="Message NEXORA"></textarea>
+          <div class="composer-bottom">
+            <div class="composer-tools"><span class="sparkle">✦</span><span>Ask anything, explore everything</span></div>
+            <div class="send-side"><span class="enter-hint">Enter ↵</span><button id="sendBtn" class="send-btn" aria-label="Send message">↑</button></div>
+          </div>
+        </div>
+        <p class="disclaimer">NEXORA can make mistakes. Check important information.</p>
+      </footer>
+    </main>
+  </div>
+
+  <div class="modal-backdrop" id="settingsModal" hidden>
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="settingsTitle">
+      <div class="modal-head"><div><span class="modal-kicker">PREFERENCES</span><h2 id="settingsTitle">Workspace settings</h2></div><button class="icon-btn" data-close="settingsModal">×</button></div>
+      <label class="field-label" for="apiEndpoint">AI backend endpoint</label>
+      <input id="apiEndpoint" class="text-field" placeholder="https://your-server.com/api/chat" />
+      <p class="field-help">Optional. Your backend should accept POST JSON { "message": "..." } and return { "reply": "..." }. Do not put secret API keys here.</p>
+      <div class="setting-note"><span class="status-dot"></span><div><strong>Demo mode is active by default</strong><p>Connect a secure backend to receive real AI-generated answers.</p></div></div>
+      <div class="modal-actions"><button class="secondary-btn" data-close="settingsModal">Cancel</button><button class="primary-btn" id="saveSettingsBtn">Save settings</button></div>
+    </section>
+  </div>
+
+  <div class="toast" id="toast"></div>
+  <script src="app.js"></script>
+</body>
+</html>
